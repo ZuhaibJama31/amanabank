@@ -1,5 +1,6 @@
 package com.demo.amanabank.model;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,13 +16,13 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String accountName;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String accountNumber;
 
-    @Column(nullable = false)
+
     private Double balance;
 
 

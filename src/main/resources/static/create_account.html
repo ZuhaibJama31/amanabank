@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>Create a new bank account</h1>
+<form id="accountForm">
+    <label for="name">Account Name: </label>
+    <input type="text" id="name"><br><br>
+    <label for="name">Account Number: </label>
+    <input type="text" id="acc_no"><br><br>
+    <label for="balance">Balance: </label>
+    <input type="number" id="balance"><br><br>
+
+    <input type="submit" value="Create">
+</form>
+
+<script>
+    document.getElementById("accountForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const accountName = document.getElementById("name").value;
+        const accountNumber = document.getElementById("acc_no").value;
+        const balance = document.getElementById("balance").value;
+
+
+        // Send a POST request to add the product
+        fetch("/accounts/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({accountName,accountNumber,balance})
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Account created successfully!");
+            document.getElementById("accountForm").reset();
+        })
+        .catch(error => console.error("Error adding product:", error));
+    });
+</script>
+
+</body>
+</html>

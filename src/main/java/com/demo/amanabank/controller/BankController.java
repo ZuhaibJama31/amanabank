@@ -22,15 +22,10 @@ public class BankController {
     public BankAccount getBankAccountById(@PathVariable Long id){
         return bankServices.getBankAccountById(id);
     }
-    @PostMapping("/add")
-    public BankAccount addAccount(BankAccount bankAccount){
-        return bankServices.addAccount(bankAccount);
+    @PostMapping("/create")
+    public BankAccount addAccount(@RequestBody BankAccount bankAccount){
+        return bankServices.createAccount(bankAccount);
 
     }
-    @DeleteMapping("/delete/{id}")
-    public void deleteAccount(@PathVariable Long id) {
-        bankServices.deleteAccount(id);
 
-
-    }
 }
